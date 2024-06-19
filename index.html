@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Опис вашої сторінки">
+    <meta name="keywords" content="ключові слова, вашої сторінки">
+    <meta name="author" content="Ваше ім'я">
+    <title>Назва сторінки</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Підключення зовнішнього CSS файлу -->
+    <style>
+       body{
+	background-color: #20232a;
+	height: 100vh;
+	width: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #282c34;
+    color: #61dafb;
+}
+
+.wrapper{
+	display: grid;
+    place-content: center;
+    text-align: center;
+	height: 100vh;
+}
+
+.navi-text{
+	
+}
+
+.timer-container {
+	display: grid;
+    place-content: center;
+     text-align: center;
+
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.time-unit {
+    background-color: #20232a;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 2em;
+    width: 120px;
+    text-align: center;
+}
+
+.time-unit span {
+    display: block;
+    font-size: 0.5em;
+    color: #61dafb;
+}
+
+
+
+
+.navi-container {
+    text-align: center;
+}
+
+.navi-text {
+    @include adaptiveValue("font-size",35 ,15 );
+    font-weight: bold;
+    color: #f0db4f;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: slide-in 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+@media (max-width:899px) {
+	.timer {
+		display: grid;
+		justify-content: center;
+		gap: 20px;
+	}
+
+
+.time-unit{
+	background-color: #20232a;
+    border-radius: 5px;
+    padding: 20px;
+    @include adaptiveValue("font-size",25 ,10 );
+    @include adaptiveValue("width", 120 , 60);
+    text-align: center;
+}
+}
+    </style>
+</head>
+<body>
+  
+    </header>
+    
+   <main class="page">
+				<section class="section-text">
+					<div class="navi-container">
+						<div class="navi-text">NAVI БЕЗ ТИТУЛОВ DOTA2</div>
+					</div>
+				</section>
+				<section class="section-timer">
+				<div class="timer-container">
+					<div class="timer">
+						<div id="years" class="time-unit"></div>
+						<div id="months" class="time-unit"></div>
+						<div id="days" class="time-unit"></div>
+						<div id="hours" class="time-unit"></div>
+						<div id="minutes" class="time-unit"></div>
+						<div id="seconds" class="time-unit"></div>
+					</div>
+				</div>
+			</section>
+			</main>
+    
+    <footer>
+        <p>&copy; 2024 Ваше ім'я. Всі права захищені.</p>
+    </footer>
+
+
+    <script>
+        function startTimer() {
+    const startTime = new Date("2017-11-22T00:00:00").getTime(); // Початковий час (наприклад, 1 січня 2024 року)
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const elapsedTime = now - startTime;
+
+        // Визначаємо значення років, місяців, днів, годин, хвилин та секунд
+        const years = Math.floor(elapsedTime / (1000 * 60 * 60 * 24 * 365.25));
+        const months = Math.floor((elapsedTime % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+        const days = Math.floor((elapsedTime % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((elapsedTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+
+        document.getElementById('years').innerHTML = `${years}<span>років</span>`;
+        document.getElementById('months').innerHTML = `${months}<span>місяців</span>`;
+        document.getElementById('days').innerHTML = `${days}<span>днів</span>`;
+        document.getElementById('hours').innerHTML = `${hours}<span>годин</span>`;
+        document.getElementById('minutes').innerHTML = `${minutes}<span>хвилин</span>`;
+        document.getElementById('seconds').innerHTML = `${seconds}<span>секунд</span>`;
+    }
+
+    // Оновлюємо таймер кожну секунду
+    setInterval(updateTimer, 1000);
+}
+    </script>
+</body>
+</html>
